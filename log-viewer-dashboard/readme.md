@@ -128,36 +128,36 @@ npm run export
 
 ```
 src/
-├── app/         # Next.js App Router
-│ ├── page.tsx         # Main dashboard page
-│ ├── layout.tsx         # Root layout
-│ ├── loading.tsx         # Loading component
-│ └── globals.css         # Global styles
-├── components/         # Reusable UI components
-│ ├── dashboard-header.tsx         # Header with title and actions
-│ ├── add-log/         # Add log functionality
-│ │ ├── add-log-dialog.tsx         # Modal dialog wrapper
-│ │ └── add-log-form.tsx         # Log creation form
-│ ├── filters/         # Filter components
-│ │ ├── filter-panel.tsx         # Main filter container
-│ │ ├── search-filter.tsx         # Text search input
-│ │ ├── level-filter.tsx         # Log level dropdown
-│ │ ├── resource-filter.tsx         # Resource ID filter
-│ │ └── date-range-filter.tsx         # Date/time range picker
-│ ├── logs/         # Log display components
-│ │ ├── log-list.tsx         # Log container with states
-│ │ └── log-item.tsx         # Individual log entry
-│ └── ui/         # shadcn/ui components
-├── hooks/         # Custom React hooks
-│ ├── use-debounce.ts         # Debounce hook for search
-│ └── use-logs.ts         # Main logs state management
-├── services/         # API services
-│ ├── log-service.ts         # Log fetching service
-│ └── log-api.ts         # Log creation API
-├── types/         # TypeScript definitions
-│ └── log.ts         # Log-related interfaces
-└── utils/         # Utility functions
-└── log-styles.ts         # Styling and formatting utils
+├── app/                       # Next.js App Router
+│ ├── page.tsx                 # Main dashboard page
+│ ├── layout.tsx               # Root layout
+│ ├── loading.tsx              # Loading component
+│ └── globals.css              # Global styles
+├── components/                # Reusable UI components
+│ ├── dashboard-header.tsx     # Header with title and actions
+│ ├── add-log/                 # Add log functionality
+│ │ ├── add-log-dialog.tsx     # Modal dialog wrapper
+│ │ └── add-log-form.tsx       # Log creation form
+│ ├── filters/                 # Filter components
+│ │ ├── filter-panel.tsx       # Main filter container
+│ │ ├── search-filter.tsx      # Text search input
+│ │ ├── level-filter.tsx       # Log level dropdown
+│ │ ├── resource-filter.tsx    # Resource ID filter
+│ │ └── date-range-filter.tsx  # Date/time range picker
+│ ├── logs/                    # Log display components
+│ │ ├── log-list.tsx           # Log container with states
+│ │ └── log-item.tsx           # Individual log entry
+│ └── ui/                      # shadcn/ui components
+├── hooks/                     # Custom React hooks
+│ ├── use-debounce.ts          # Debounce hook for search
+│ └── use-logs.ts              # Main logs state management
+├── services/                  # API services
+│ ├── log-service.ts           # Log fetching service
+│ └── log-api.ts               # Log creation API
+├── types/                     # TypeScript definitions
+│ └── log.ts                   # Log-related interfaces
+└── utils/                     # Utility functions
+└── log-styles.ts              # Styling and formatting utils
 ```
 
 ### Core Components
@@ -385,7 +385,3 @@ For support and questions:
 ---
 
 Built with ❤️ using React, Next.js, and TypeScript
-
-```
-
-```

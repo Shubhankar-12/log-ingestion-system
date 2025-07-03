@@ -16,14 +16,14 @@ Think of it like a simple version of tools like Splunk or Datadog for developers
 
 ```
 log-system/
-├── backend/          # Node.js API server
+├── backend/              # Node.js API server
 │   ├── src/
 │   │   ├── controllers/  # Handle HTTP requests
 │   │   ├── services/     # Business logic
 │   │   ├── routes/       # API endpoints
 │   │   └── ...
-│   └── logs.json     # Where log data is stored
-├── frontend/         # React web app
+│   └── logs.json         # Where log data is stored
+├── frontend/             # React web app
 │   ├── src/
 │   │   ├── components/
 │   │   ├── services/
@@ -257,6 +257,13 @@ npm start
 npm run build
 # Deploy the 'build' folder to your web server
 ```
+
+### Additional Features
+
+<!-- added modal to add logs and generate random logs for testing -->
+
+- [] Add modal to add logs
+- [] Generate random logs for testing
 
 ### Environment Variables
 
