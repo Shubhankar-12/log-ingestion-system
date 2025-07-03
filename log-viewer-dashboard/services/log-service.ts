@@ -102,7 +102,7 @@ const covertIntoQueryParams = (filters: LogFilters): string => {
 };
 
 export const createLog = async (logData: CreateLogRequest): Promise<void> => {
-  const response = await fetch("http://localhost:3001/logs", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_SERVICE_URL}/logs`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
