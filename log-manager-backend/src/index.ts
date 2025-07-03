@@ -1,19 +1,27 @@
+// index.ts
+import http from "http";
+import { WebSocketServer, WebSocket } from "ws";
 import { createApp } from "./app";
 import { DatabaseUtils } from "./utils/database.utils";
-// env
 // import "dotenv/config";
 
 const startServer = async (): Promise<void> => {
   try {
-    // Initialize database
     await DatabaseUtils.initializeDatabase();
     console.log("✅ Database initialized successfully");
 
-    // Create and start server
-    const app = createApp();
-    const PORT = process.env.PORT || 3001;
+    const wsClients: Set<WebSocket> = new Set();
+    const app = createApp(wsClients);
+    const server = http.createServer(app);
 
-    app.listen(PORT, () => {
+    const wss = new WebSocketServer({ server });
+    wss.on("connection", (ws) => {
+      wsClients.add(ws);
+      ws.on("close", () => wsClients.delete(ws));
+    });
+
+    const PORT = process.env.PORT || 3001;
+    server.listen(PORT, () => {
       console.log(`🚀 Log ingestion server running on port ${PORT}`);
       console.log(`📋 Health check: http://localhost:${PORT}/health`);
       console.log(`📝 API endpoints:`);
@@ -27,7 +35,6 @@ const startServer = async (): Promise<void> => {
   }
 };
 
-// Handle graceful shutdown
 process.on("SIGINT", () => {
   console.log("\n🛑 Received SIGINT, shutting down gracefully...");
   process.exit(0);

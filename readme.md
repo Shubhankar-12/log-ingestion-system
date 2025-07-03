@@ -260,8 +260,7 @@ npm run build
 
 ### Additional Features
 
-<!-- added modal to add logs and generate random logs for testing -->
-
+- [] Add websocket for real-time updates of logs created
 - [] Add modal to add logs
 - [] Generate random logs for testing
 

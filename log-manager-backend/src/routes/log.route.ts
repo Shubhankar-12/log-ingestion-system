@@ -1,11 +1,14 @@
 import { Router } from "express";
 import { LogController } from "../controllers/log.controller";
+import { WebSocket } from "ws";
 
-const router = Router();
-const logController = new LogController();
+export const createRoutes = (wsClients: Set<WebSocket>) => {
+  const router = Router();
+  const logController = new LogController(wsClients);
 
-router.post("/logs", logController.ingestLog);
-router.get("/logs", logController.queryLogs);
-router.get("/health", logController.healthCheck);
+  router.post("/logs", logController.ingestLog);
+  router.get("/logs", logController.queryLogs);
+  router.get("/health", logController.healthCheck);
 
-export default router;
+  return router;
+};

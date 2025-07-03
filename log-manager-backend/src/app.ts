@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
-import logRoutes from "./routes/log.route";
+import { createRoutes } from "./routes/log.route";
 import { errorHandler, notFoundHandler } from "./midllewares/log.middlware";
-
-export const createApp = (): express.Application => {
+import { WebSocket } from "ws";
+export const createApp = (wsClients: Set<WebSocket>): express.Application => {
   const app = express();
 
   // Middleware
@@ -24,7 +24,7 @@ export const createApp = (): express.Application => {
   });
 
   // Routes
-  app.use("/", logRoutes);
+  app.use("/", createRoutes(wsClients));
 
   // Error handling
   app.use(notFoundHandler);

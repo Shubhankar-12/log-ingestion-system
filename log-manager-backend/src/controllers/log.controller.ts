@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
+import { WebSocket } from "ws"; // Add this import
 import { LogService } from "../services/log.service";
-import { LogSchema, QueryParamsSchema } from "../schemas/log.schema";
+import { LogSchema } from "../schemas/log.schema";
 import { LogQueryParams } from "../types/log.types";
 
 export class LogController {
   private logService: LogService;
+  private wsClients: Set<WebSocket>;
 
-  constructor() {
+  constructor(wsClients: Set<WebSocket>) {
     this.logService = new LogService();
+    this.wsClients = wsClients;
   }
 
   ingestLog = async (req: Request, res: Response): Promise<void> => {
@@ -24,6 +27,14 @@ export class LogController {
 
       const logEntry = validationResult.data;
       const savedLog = await this.logService.addLog(logEntry);
+
+      // Broadcast to all connected WebSocket clients
+      const payload = JSON.stringify({ type: "NEW_LOG", payload: savedLog });
+      this.wsClients.forEach((client) => {
+        if (client.readyState === client.OPEN) {
+          client.send(payload);
+        }
+      });
 
       res.status(201).json(savedLog);
     } catch (error) {

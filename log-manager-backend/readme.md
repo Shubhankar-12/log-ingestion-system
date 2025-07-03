@@ -296,6 +296,12 @@ npm run build && npm start
 
 ```
 
+### Additional Features
+
+<!-- added websocket feature when new log is added -->
+
+Added websocket feature when new log is added
+
 ### Production Checklist
 
 - [ ] Set NODE_ENV=production
