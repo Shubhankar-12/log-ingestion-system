@@ -234,64 +234,6 @@ backend/
 └── README.md
 ```
 
-## 🧪 Testing
-
-### Run Tests
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
-```
-
-### Test Structure
-
-```
-src/
-├── __tests__/
-│   ├── controllers/
-│   │   └── log.controller.test.ts
-│   ├── services/
-│   │   └── log.service.test.ts
-│   └── utils/
-│       └── database.utils.test.ts
-```
-
-### Example Test
-
-```typescript
-import { LogService } from "../services/log.service";
-import { DatabaseUtils } from "../utils/database.utils";
-
-describe("LogService", () => {
-  beforeEach(async () => {
-    await DatabaseUtils.initializeDatabase();
-  });
-
-  it("should add a log entry", async () => {
-    const logService = new LogService();
-    const logEntry = {
-      level: "error" as const,
-      message: "Test error",
-      resourceId: "test-server",
-      timestamp: "2023-09-15T08:00:00Z",
-      traceId: "test-trace",
-      spanId: "test-span",
-      commit: "test-commit",
-      metadata: {},
-    };
-
-    const result = await logService.addLog(logEntry);
-    expect(result).toEqual(logEntry);
-  });
-});
-```
-
 ## 🔧 Environment Variables
 
 Create a `.env` file in the backend directory:
@@ -345,14 +287,13 @@ LOG_LEVEL=debug
 
 ## 🚀 Deployment
 
-### Docker Support
-
 ```bash
-# Build Docker image
-docker build -t log-ingestion-backend .
+# Run development server
+npm run dev
 
-# Run container
-docker run -p 3001:3001 log-ingestion-backend
+# Run production server
+npm run build && npm start
+
 ```
 
 ### Production Checklist
